@@ -1,0 +1,113 @@
+Python package "FTP"
+
+Purpose: 实现一个简单地FTP程序
+
+Author: Chun Liu (cedrela_liu@163.com)
+
+Blog: http://www.cnblogs.com/cedrelaliu/
+
+Licence: no
+
+Version: 1.0 -- 2016-03-12
+
+Versions of Python supported: 3.x
+
+程序介绍：
+简单地实现了FTP的如下功能：
+用户加密认证
+每个用户有自己的家目录 ，且只能访问自己的家目录
+对用户进行磁盘配额，每个用户的可用空间不同
+允许用户在ftp server上随意切换目录
+允许用户查看当前目录下文件
+允许上传和下载文件，保证文件一致性
+文件传输过程中显示进度条
+支持文件的断点续传
+
+程序执行：
+复制FTP包到server(比如 虚拟机linux)和client(本地windows机器)端
+执行之前请在settings文件中修改IP，PORT信息
+服务端，执行bin/server_index.py
+客户端，执行bin/client_index.py，用户登录信息可以在settings文件中找到
+
+
+程序结构说明:
+FTP/
+   --bin/
+        server_index.py--server端执行主程序
+        client_index.py--client端执行主程序
+   --conf/
+        settings.py--配置文件，定义了IP,PORT，用户帐户信息等
+   --core/
+        function.py--定义了FTP_Server类和Command类
+
+程序演示：
+D:\Python\Project\S12\Day7\FTP\bin>python client_index.py
+server 192.168.59.129 connected
+User (192.168.59.129):alex               # 输入用户名和密码
+Password:alex123
+Login successful!
+ftp>
+ftp>ls                                   # 可以使用常用的shell命令，如果没有返回值的话，显示  Command return empty!
+Command return empty!
+ftp>pwd
+/home/liuchun/python_scripts/FTP/home/alex
+
+ftp>mkdir tmp
+Command return empty!
+ftp>ls
+tmp
+
+ftp>cd tmp                                        # 可以切换用户家目录下的其他目录
+/home/liuchun/python_scripts/FTP/home/alex/tmp
+ftp>ls
+Command return empty!
+ftp>pwd
+/home/liuchun/python_scripts/FTP/home/alex/tmp
+
+ftp>cd ../
+/home/liuchun/python_scripts/FTP/home/alex
+ftp>pwd
+/home/liuchun/python_scripts/FTP/home/alex
+ftp>cd ../                                        # 访问家目录以外的目录会被拒绝
+Permission denied!
+ftp>
+
+ftp>cd tmp
+/home/liuchun/python_scripts/FTP/home/alex/tmp
+ftp>put IMG_1714.mov     # 本地文件放在bin目录下，也可以使用绝对路径，但貌似上传到Linux上文件名也带了路径，不推荐
+data_mark 0
+File sending: 100%
+
+ftp>pwd
+/home/liuchun/python_scripts/FTP/home/alex/tmp
+ftp>ls
+IMG_1714.mov
+
+ftp>get IMG_1714.mov        # 下载视频文件，可以观看
+File getting: 100%
+
+ftp>put IMG_1715.mov        # 上传的文件总额度大于用户的可用额度
+not enough quota!
+ftp>quit
+
+                            # 测试断点续传，在上传IMG_1715.mov文件的时候停掉server端，文件状态如下
+[root@lclinuxplatform tmp]# ll
+total 123992
+-rw-r--r-- 1 root root 40371153 Jan 15 14:40 IMG_1714.mov
+-rw-r--r-- 1 root root 86593536 Jan 15 14:52 IMG_1715.mov
+
+ftp>cd tmp
+/home/liuchun/python_scripts/FTP/home/alex/tmp
+ftp>ls
+IMG_1714.mov
+IMG_1715.mov
+ftp>put IMG_1715.mov        # 继续上传相同的文件
+File sending: 58%      # 会接着上次的百分比继续上传
+
+[root@lclinuxplatform tmp]# ll      # 上传后查看文件的信息
+total 253480
+-rw-r--r-- 1 root root  40371153 Jan 15 14:40 IMG_1714.mov
+-rw-r--r-- 1 root root 219187670 Jan 15 14:54 IMG_1715.mov
+
+ftp>get IMG_1715.mov             # 获取文件到本地后，打开Ok
+File getting: 100%
