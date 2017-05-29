@@ -1,0 +1,105 @@
+Python package "user_login"
+
+Purpose: Provide a user login page, for user to login and authentication
+
+Author: Chun Liu (cedrela_liu@163.com)
+
+Blog: http://www.cnblogs.com/cedrelaliu/
+
+Licence: no
+
+Version: 1.0 -- 2016-01-18
+
+Versions of Python supported: 3.x
+
+External modules required: The package itself is pure Python with no dependencies on modules or packages outside the standard Python distribution.
+
+Files in the package:
+   user_login.py -- python script for you to run
+   Account.lock  -- records for locked user account, format 'username', eg 'liuchun'
+   Account.txt   -- records for normal user account, format 'username,password', eg 'liuchun,123456'
+   login.times   -- failed login records for user, format 'username,timestamp for latest login, login failed times, time period for login process', eg 'petty,1453100264.0577726,3,358'
+                    means that 'pretty' already failed login '3' times in '358' seconds.
+   Temp.txt      -- temp file to cache the temporal data in program
+   user_login_flow_chart -- flow chart of this program, illustration of processing logic
+   
+Function details:
+1 this script allow user to login the system;
+2 if user failed login authentication(e.g wrong password) with specific user account for 3 times in 3 hours, the user account will be
+  locked;
+3 you can press 'q' to exit the system;
+4 when username is empty, you will be forced to exit the system;
+5 Be aware of the password input, it will not appear any character when you type in. You have to
+  exactly put into the right password(e.g you can not input any space with password).
+
+Quick start:
+ Before start running the program, you can find normal user account and password in
+ Account.txt file. Be sure that the account you're going to use is not locked in
+ file Account.lock. You can find failed login records in file login.times.
+1 uninstall the package user_login.zip
+2 python user_login.py
+3 the login pages shows, as follows:
+  #########################################
+
+  #              Login Page               #
+
+  #########################################
+  Press q to exit the system !
+  Username:
+  Password:
+4 press 'q' to exit the system!
+  #########################################
+
+  #              Login Page               #
+
+  #########################################
+  Press q to exit the system !
+  Username:q
+  Password:
+5 if you put nothing in username, it will exit the system !
+6 use the right username and password to login, as follows:
+  #########################################
+
+  #              Login Page               #
+
+  #########################################
+  Press q to exit the system !
+  Username: alex
+  Password:
+  Welcome alex !
+7 if you try to use wrong username or password to login for 3 times in 3 hours
+  you will be locked, as follows:
+  #########################################
+
+  #              Login Page               #
+
+  #########################################
+  Press q to exit the system !
+  Username: mul
+  Passowrd: 123
+  Wrong username or password!
+  You've failed 3 times in 3 hours ! Your account will be locked !
+  Installation: No need to install, just run it.
+8 if you try to login with a locked account, you will be forced to exit the system,
+  as follows:
+  #########################################
+
+  #              Login Page               #
+
+  #########################################
+  Press q to exit the system !
+  Username: petty
+  Password:
+  Your account is locked! You're forbidden to login system!
+
+Download URLs: none
+
+[中文简述]
+1 本程序包解压后包含5个文件：user_login.py,Account.lock, Account.txt,login.times,Temp.txt。文件作用以及内部格式说明
+请参考 'Files in the package'部分的说明；
+2 请仔细阅读'Function details' 中对程序功能的说明，包括输入'q'退出系统，输入空格退出系统，输入密码不显示，以及3个小时内
+同一个账号（username）失败3次锁定的机制等。
+3 在测试程序前，请仔细阅读'Quick start' 部分，包括运行前你需要从哪些文件中获取账号等信息，以及不同的输入测试样例。
+4 如有意见，通过 Author 部分的邮箱联系我。
+5 我的博客地址请参考'Blog'，谢谢。
+
