@@ -1,0 +1,38 @@
+Python package "simulate_life_game"
+
+Purpose: 实现一个模拟人生的游戏
+
+Author: Chun Liu (cedrela_liu@163.com)
+
+Blog: http://www.cnblogs.com/cedrelaliu/
+
+Licence: no
+
+Version: 1.0 -- 2016-03-05
+
+Versions of Python supported: 3.x
+
+程序介绍：
+简单实现了模拟人生游戏。定义主角色后，主要有以下几个情节：
+ep_love:主角初恋的故事情节，与Rival第一次对决
+ep_getskill:主角在打击之下见到了神秘老者，拜师，获取特殊技能
+ep_upgrade:主角通过各种活动升级
+ep_challenge:主角与Rival的终极对决
+各个情节中的选择会影响主角的各种属性值，从而影响与Rival终极对决的结果。Rival的属性值在settings文件中已设定好
+
+程序执行：
+执行main.py文件开始运行程序，按照不同提示选择即可。
+
+
+程序结构说明:
+simulate_life_game/
+    main.py --主执行程序文件，执行它来运行整个程序
+    settings.py --配置文件，包含了各种配置信息
+    ep_love.py --定义了Love类，主角初恋的故事情节，与Rival第一次对决。
+    ep_getskill.py --定义了Initial_Skill类，主要实现主角认识师父以及获取特殊技能的情节
+    ep_upgrade.py --定义Upgrade类，主要实现主角通过各种活动升级的情节
+    ep_challenge.py --定义Challenge类，主要实现主角和rival最终对决的情节，主要是对比各种属性值来实现
+    menu.py --定义Menu类，主要实现菜单的生成
+    progress_out.py --定义Progress_out类，主要实现进度条打印和文字的单个输出
+    role.py --定义了基本角色的类BasicRole，以及各种方法
+    role_activity.py --定义Activity类，主要实现活动的生成
