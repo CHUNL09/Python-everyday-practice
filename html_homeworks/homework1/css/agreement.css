@@ -1,0 +1,14 @@
+.para{
+    text-indent: 2em;
+}
+.title{
+    text-align: center;
+    font-family:微软雅黑
+}
+.sub_title{
+    color: #ffa33a;
+}
+.body_c{
+    background-image: url("../pic/body.png");
+    background-repeat: repeat-x;
+}
