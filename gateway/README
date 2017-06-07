@@ -1,0 +1,60 @@
+Python package "gateway"
+
+Purpose: 实现一个简单地堡垒机程序
+
+Author: Chun Liu (cedrela_liu@163.com)
+
+Blog: http://www.cnblogs.com/cedrelaliu/
+
+Licence: no
+
+Version: 1.0 -- 2016-04-23
+
+Versions of Python supported: 3.x
+
+程序说明：
+使用paramiko和sqlalchemy简单地实现了堡垒机的部分功能。程序的初始化数据只能通过
+修改代码中的数据来导入【本来应该是导入文件或者由管理员添加的】。
+
+程序执行：
+先执行sql/gateway_init_ddl.sql用来创建数据gateway
+数据库的连接配置在conf/settings中修改
+执行bin/gateway_index.py。执行的时候会提示'input 'Y' to initial the database:'
+这个是用来设置初始化数据的。在main.py中data_init()定义了初始化数据。
+日志会写到audit_log表中。
+
+程序执行样例:
+ 下面的例子是在win上运行的实例
+C:\Users\Cedrela.liu\AppData\Roaming\Python\Python35\site-packages\pymysql\cursors.py:158: Warning: Incorrect string value: '\xD6\xD0\xB9\xFA\xB1\xEA...' for column 'VARIABLE_VALUE' at row 478
+  result = self._query(query)
+username: alex
+password: alex123
+0. server [hostserver1] account[root]
+1. server [hostserver1] account[liuchun]
+2. server [hostserver2] account[liuchun]
+Connect: 0
+*** Connecting...
+C:\Users\Cedrela.liu\AppData\Roaming\Python\Python35\site-packages\paramiko\client.py:645: UserWarning: Unknown ssh-rsa host key for 192.168.59.131: b'946a87f44dcf3c6f711b4dc0d14e5914'
+  (key.get_name(), hostname, hexlify(key.get_fingerprint())))
+<paramiko.Transport at 0x3575f50 (cipher aes128-ctr, 128 bits) (active; 1 open channel(s))>
+*** Here we go!
+
+Line-buffered terminal emulation. Press F6 or ^Z to send EOF.
+
+
+[root@learnpython ~]# ls
+ls
+anaconda-ks.cfg                    pycharm-2016.1.2
+Desktop                            pycharm-professional-2016.1.2.tar.gz
+Documents                          PycharmProjects
+Downloads                          Python-3.5.1
+epel-release-latest-7.noarch.rpm   Python-3.5.1.tgz
+gevent-1.1.0-cp35-cp35m-win32.whl  S12
+Music                              setuptools-20.3.1.zip
+mysql                              Templates
+Pictures                           Videos
+Public
+[root@learnpython ~]# pwd
+pwd
+/root
+[root@learnpython ~]#
