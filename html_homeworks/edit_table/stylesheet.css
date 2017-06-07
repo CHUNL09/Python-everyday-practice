@@ -1,0 +1,51 @@
+.modal{
+    position: fixed;
+    background-color: #d6d4d4;
+    border: 1px solid #999;
+    width: 600px;
+    max-height: 500px;
+    top: 50%;
+    left: 50%;
+    margin-left: -300px;
+    margin-top: -250px;
+    border-radius: 5px;
+    z-index: 2050;
+}
+.m_name{
+    font-size: 20px;
+    font-weight: bold;
+    //border: 1px solid #4cae4c;
+    color: white;
+}
+
+.buttons {
+    display: inline;
+    float: right;
+    margin: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #4cae4c;
+    cursor: pointer;
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #5cb85c;
+}
+.s_background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #000000;
+  opacity: 0.5;
+}
+.hide{
+    display: none;
+}
+.edit_tab{
+    text-align: center;
+}
+.edit_tab:hover{
+    cursor: pointer;
+    color: #00a2ca;
+}

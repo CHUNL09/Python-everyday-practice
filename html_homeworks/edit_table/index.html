@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+<body>
+    <div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>Hostname</td>
+                    <td>IP</td>
+                    <td>Port</td>
+                    <td>Option</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>host1</td>
+                    <td>192.168.0.1</td>
+                    <td>2222</td>
+                    <td class="edit_tab">edit</td>
+                </tr>
+                <tr>
+                    <td>host2</td>
+                    <td>192.168.0.2</td>
+                    <td>2222</td>
+                    <td class="edit_tab">edit</td>
+                </tr>
+                <tr>
+                    <td>host3</td>
+                    <td>192.168.0.3</td>
+                    <td>2222</td>
+                    <td class="edit_tab">edit</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal hide">
+        <form>
+            <div style="height: 40px;margin-top: 8px;">
+                <div class="m_name" style="float: left;width: 100px;margin-left: 15px;" >HostName:</div>
+                <input id="h_name" type="text" style="margin-left: 10px;width: 180px;">
+            </div>
+            <div style="height: 40px;margin-top: 8px;">
+                <div class="m_name" style="float: left;width: 100px;margin-left: 15px;">IP:</div>
+                <input id="h_ip" type="text" style="margin-left: 10px;width: 180px;">
+            </div>
+            <div style="height: 40px;margin-top: 8px;">
+                <div class="m_name" style="float: left;width: 100px;margin-left: 15px;">Port:</div>
+                <input id="h_port" type="text" style="margin-left: 10px;width: 180px;">
+            </div>
+            <div style="margin-left: 35%;">
+                <div style="float: left">
+                    <a id="save" class="buttons">提交</a>
+                </div>
+                <div style="float: left">
+                    <a id="cancel" class="buttons">取消</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="shadow" class="s_background hide"></div>
+    <script src="jquery-2.2.3.min.js"></script>
+    <script>
+        current_row='';
+        $(function(){
+            $(".edit_tab").click(function () {
+                $(".modal").removeClass("hide");
+                $("#shadow").removeClass("hide");
+                var name=$(this).prevAll().eq(2).text();
+                var ip=$(this).prevAll().eq(1).text();
+                var port=$(this).prevAll().eq(0).text();
+                $("#h_name").val(name);
+                $("#h_ip").val(ip);
+                $("#h_port").val(port);
+                current_row=$(this).parent();
+                //console.log($(this).parent().find('td').eq(0).text());
+                //console.log(current_row.find('td').eq(1).text());
+            })
+        });
+        $(function(){
+            $("#cancel").click(function(){
+                if($("#h_name").next().length>0){
+                        $("#h_name").next().remove('label')
+                    }
+                if($("#h_ip").next().length>0){
+                        $("#h_ip").next().remove('label')
+                    }
+                if($("#h_port").next().length>0){
+                        $("#h_port").next().remove('label')
+                    }
+                $(".modal").addClass("hide");
+                $("#shadow").addClass("hide");
+            })
+        });
+        $(function(){
+            $("#save").click(function(){
+                var original_row=current_row;
+                //console.log(original_row.find('td').eq(1).text());
+                var new_name=$("#h_name").val();
+                var new_ip=$("#h_ip").val();
+                var new_port=$("#h_port").val();
+                if(new_name.length<=0){
+                    if($("#h_name").next().length==0){
+                        var error1="<label style='color: red;font-weight: bold'>hostname cannot be empty!</label>"
+                        $("#h_name").after(error1)
+                    }
+                }else if(new_ip.length<=0){
+                    if($("#h_ip").next().length==0){
+                        var error2="<label style='color: red;font-weight: bold'>ip address cannot be empty!</label>"
+                        $("#h_ip").after(error2)
+                    }
+                }else if(new_port.length<=0){
+                    if($("#h_port").next().length==0){
+                        var error3="<label style='color: red;font-weight: bold'>port cannot be empty!</label>"
+                        $("#h_port").after(error3)
+                    }
+                }else{
+                    //console.log($("#h_name").next())
+                    original_row.find('td').eq(0).text(new_name);
+                    original_row.find('td').eq(1).text(new_ip);
+                    original_row.find('td').eq(2).text(new_port);
+                    $(".modal").addClass("hide");
+                    $("#shadow").addClass("hide");
+                }
+            })
+        });
+
+    </script>
+</body>
+</html>

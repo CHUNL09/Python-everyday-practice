@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="stylesheet.css" type="text/css">
+</head>
+<body>
+    <div style="height: 60px;">
+        <div>
+            <a id="select" class="buttons">Select All</a>
+        </div>
+        <div>
+            <a id="inverse" class="buttons">Inverse</a>
+        </div>
+        <div>
+            <a id="cancel" class="buttons">Cancel</a>
+        </div>
+        <div>
+            <a id="edit" class="buttons" style="background-color: #8b3a30">Edit Mode</a>
+        </div>
+    </div>
+    <div>
+        <table border="1" style="margin-left: 10px;">
+            <thead>
+                <tr>
+                    <td>Option</td>
+                    <td>Hostname</td>
+                    <td>IP</td>
+                    <td>Port</td>
+                    <td>Status</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="checkbox"/>
+                    </td>
+                    <td>host1</td>
+                    <td>192.168.0.1</td>
+                    <td>2222</td>
+                    <td>online</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox"/>
+                    </td>
+                    <td>host2</td>
+                    <td>192.168.0.2</td>
+                    <td>2222</td>
+                    <td>online
+                        <!--<select>-->
+                            <!--<option selected="selected">在线</option>-->
+                            <!--<option>离线</option>-->
+                        <!--</select>-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox"/>
+                    </td>
+                    <td>host3</td>
+                    <td>192.168.0.3</td>
+                    <td>2222</td>
+                    <td>offline</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="jquery-2.2.3.min.js"></script>
+    <script>
+        $(function(){
+            $("#select").click(function(){
+                $("table input:checkbox").prop('checked',true);
+            });
+            $("#cancel").click(function(){
+
+                $("table input:checkbox").prop('checked',false);
+                window.location.reload();
+            });
+            $("#inverse").click(function(){
+                $("table input:checkbox").each(function(){
+                    $(this).prop('checked',!$(this).prop('checked'))
+                })
+            });
+
+            $("#edit").click(function(){
+                $("table input:checkbox").each(function(){
+                    if($(this).prop('checked')){
+                        var o_hostname=$(this).parent().next();
+                        var o_ip_addr=$(o_hostname).next();
+                        var o_port=$(o_ip_addr).next();
+                        var o_status=$(o_port).next();
+                        var host_value=$(o_hostname).text();
+                        var ip_value=$(o_ip_addr).text();
+                        var port_value=$(o_port).text();
+                        var status_value=$(o_status).text();
+                        o_hostname.html(function(){
+                            return '<input value='+host_value+' />'
+                        });
+                        o_ip_addr.html(function(){
+                            return '<input value='+ip_value+' />'
+                        });
+                        o_port.html(function(){
+                            return '<input value='+port_value+' />'
+                        });
+                        o_status.html(function(){
+                            if(status_value=='online'){
+                                return '<select><option selected="selected">online</option><option>offline</option></select>'
+                            }else {
+                                return '<select><option>online</option><option selected="selected">offline</option></select>'
+                            }
+
+                        });
+
+                    }
+                })
+            })
+
+        });
+
+    </script>
+</body>
+</html>
