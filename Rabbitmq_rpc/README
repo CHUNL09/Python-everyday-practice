@@ -1,0 +1,109 @@
+Python package "Rpc"
+
+Purpose: 拓展RabbitMq的RPC，可以对全部或者某组或者某个server发送命令
+
+Author: Chun Liu (cedrela_liu@163.com)
+
+Blog: http://www.cnblogs.com/cedrelaliu/
+
+Licence: no
+
+Version: 1.0 -- 2016-04-09
+
+Versions of Python supported: 3.x
+
+程序介绍：
+拓展RabbitMq的RPC，可以对全部或者某组或者某个server发送命令。client和server都使用
+topic类型的exchange。client可以对指定的组或server发送指令，server接收到指令后调用
+本地的function执行后返回结果。
+
+程序执行：
+client.py为客户端，直接执行即可，执行后输入 接收命令的对象（某组或者全部主机） 和 具体的命令。
+server.py和local_function放在一起执行，server.py为客户端，直接运行后会提示输入要创建的queue名称
+和binding_key的列表。
+先执行多个server.py，然后执行client.py向特定的server发送指令。
+具体的执行请参考程序演示部分！！
+结构图请参考 rabbitmq_rpc.png
+
+程序结构说明:
+Rpc/
+   ---client.py ，client端执行主程序
+   ---server.py ，server端执行主程序
+   ---local_function.py ，定义server端本地执行的函数。
+
+程序演示：
+注意：由于返回的message是放到一个return_queue中，在实际测试的时候，如果使用：
+while self.response is None:
+            self.connection.process_data_events()
+的话，只能获取到一条返回记录，但如果使用start_consume()方法的话，会在打印完所有的返回记录后Block掉。
+最终没有找到更好的办法，所以使用了一个try exception来捕获键盘的输入。也就是在client这端，一个命令
+返回结果后，如果发现已经Block掉了，那么直接Ctrl+C,这时会执行stop_consume()方法，进入下一次命令的执行。
+
+1 先分别启动两个server.py，启动后输入server对应的queue的名称，以及binding keys。
+  这里binding keys 输入group1.#  all.# 表示server1只接收针对group1的命令，或者是all的命令（用来实现client端
+  发送命令给所有server）
+  同理，server2的binding keys 输入group2.#  all.#
+
+    1.1 启动server1
+    D:\Python\Project\S12\Day10\rabbitmq\homework\Rpc>python server.py
+    input your queue_name: q1
+    input your binding keys: group1.#  all.#
+    [info] Your queue is [q1]
+    [info] Your binding_keys are ['group1.#', 'all.#']
+
+    1.2 启动server2
+    D:\Python\Project\S12\Day10\rabbitmq\homework\Rpc>python server.py
+    input your queue_name: q2
+    input your binding keys: group2.#  all.#
+    [info] Your queue is [q2]
+    [info] Your binding_keys are ['group2.#', 'all.#']
+
+2 启动client端，如下：
+  会要求输入routing_key 和 cmd
+  routing_key即指定要发送给哪些server。比如发送命令给所有的机器，那么可以输入: all cmd
+  如果只发送给具体某个组，那么输入: group1 cmd
+  cmd的格式为'命令|参数', 比如 echo|hello world!
+
+    D:\Python\Project\S12\Day10\rabbitmq\homework\Rpc>python client.py
+    Please input routing_key and cmd, format: routing_key cmd
+    >>>:
+
+3 client端发送特定命令给group1和group2如下：
+
+  client端发送命令，发送命令后执行结果会返回，比如Cmd result from q1 [hello group1 !]，会说明是从那个queue返回什么样
+  的结果
+    Please input routing_key and cmd, format: routing_key cmd
+    >>>:group1 echo|hello group1 !
+    group1 echo|hello group1 !
+    sending cmd [echo|hello group1 !] to [group1]...
+    Cmd result from q1 [hello group1 !]
+                                  -----------这里会Block掉，这时Ctrl+C即可
+    Please input routing_key and cmd, format: routing_key cmd
+    >>>:group2 echo|hello group2 !
+    group2 echo|hello group2 !
+    sending cmd [echo|hello group2 !] to [group2]...
+    Cmd result from q2 [hello group2 !]
+                                  -----------这里会Block掉，这时Ctrl+C即可
+    Please input routing_key and cmd, format: routing_key cmd
+    >>>:
+
+  server1端显示，会提示接收到的命令：
+    input your queue_name: q1
+    input your binding keys: group1.#  all.#
+    [info] Your queue is [q1]
+    [info] Your binding_keys are ['group1.#', 'all.#']
+    received cmd: echo|hello group1 !
+  server2端显示，会提示接收到的命令：
+    input your queue_name: q2
+    input your binding keys: group2.#  all.#
+    [info] Your queue is [q2]
+    [info] Your binding_keys are ['group2.#', 'all.#']
+    received cmd: echo|hello group2 !
+
+4 使用client发送给所有机器命令，执行斐波那契数列和的结果，如下：
+    >>>:all fib|30
+    all fib|30
+    sending cmd [fib|30] to [all]...
+    Cmd result from q1 [832040]
+    Cmd result from q2 [832040]
+    ----在此处执行ctrl+c--这样才能让start consume结束
