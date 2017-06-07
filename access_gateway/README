@@ -1,0 +1,74 @@
+Python package "access_gateway"
+
+Purpose: 实现一个简单批量主机管理工具
+
+Author: Chun Liu (cedrela_liu@163.com)
+
+Blog: http://www.cnblogs.com/cedrelaliu/
+
+Licence: no
+
+Version: 1.0 -- 2016-03-19
+
+Versions of Python supported: 3.x
+
+程序介绍：
+可以对机器进行分组
+可以对指定的一组或多组机器执行批量命令，分发文件(发送\接收)
+纪录操作日志
+
+程序执行：
+默认的登录账号为 admin/admin，在配置文件 conf/sys_config.py中
+执行文件在 bin/gateway_index.py
+
+
+程序结构说明:
+access_gateway/
+   --bin/
+        gateway_index.py--执行主程序
+   --conf/
+        sys_config.py--程序配置文件
+        server_config.py--主机以及组的信息，如ip,port, username,password等
+   --download/
+        本地目录，从远端下载的文件会放置在该目录中
+   --log/
+        server.log--系统的操作日志
+   --module/
+        log_generate.py--定义了日志类 logger，用于程序中写日志
+        server_operation.py--定义了gateway_server类，用于实现主机的管理，以及上传下载等功能
+        main.py--定义了command_handle类，用于对用户输入的命令做解析和操作
+
+程序命令说明：
+  -r 后是主机server的信息， -g 后是group组信息，一条命令中，只能有-r 或者-g其中一个
+1 添加组或者主机
+add -g server_group1
+add -r hostname 192.168.59.129 ip 192.168.59.129 port 22 username root password aircool group server_group1
+add -r hostname 192.168.111.129 ip 192.168.111.129 port 22 username root password aircool
+
+2 查询组或者主机信息
+query -r 192.168.111.129 192.168.59.129
+query -g server_group1
+
+3 更新组或者主机（对于主机来说 hostname是关键字）
+格式 update -r hostname ip xxx port xxx username xxx password xxx group xxx
+update -g server_group1 server_group2
+update -r hostname 192.168.111.129 group server_group2
+
+4 删除主机或组信息（删除一个组后，该组下主机的记录中，group项会变为default）
+delete -r 192.168.111.129
+delete -g server_group2
+delete -r 192.168.59.129 192.168.111.129
+
+5 批量命令执行
+5.1 shell命令
+格式 exec_shell other_command [-r hostname ..] [-g groupname ..]
+exec_shell ls -r 192.168.59.129
+exec_shell ls -g server_group2
+
+5.2 download命令(这里local_path 指定文件名即可，不需要加路径)
+格式 download remote_file local_path [-r hostname ..] [-g groupname ..]
+download /root/install.log install.log -g server_group2
+
+5.3 upload 命令（）
+格式 upload local_file des_path [-r hostname ..] [-g groupname ..]
+upload F:\\IMG_1714.MOV /root/IMG_1714.MOV -g server_group2
