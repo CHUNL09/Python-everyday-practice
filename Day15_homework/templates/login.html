@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login page</title>
+    <link href="/static/css/common.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="header-layout">
+            <h1 class="logo">
+                <a href="#" style="visibility: hidden">
+                    company logo
+                </a>
+            </h1>
+            <h2 class="logo-title">账号登录</h2>
+            <ul class="header-nav">
+                <li>
+                    <a href="#" target="_blank">首页</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">帮助</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">论坛</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="body">
+        <div id="login-banner">
+            <a href="#" target="_blank">
+                <img alt="login_banner" src="/static/pic/login_banner.png">
+            </a>
+        </div>
+        <div id="login-module">
+            <div class="login-frame">
+                <h3>登录</h3>
+                <div class="login_err_panel" id="login_res">{{ login_result }}</div>
+                <div class="login_err_panel" style="display: none" id="err"> 用户名不能为空</div>
+                <form class="login_form" id="loginForm" action="/app01/submit/" method="post">
+                    <div class="login_input_panel" id="js_mainContent">
+                        <div class="login_input">
+                            <i class="icon_login un"> </i>
+                            <input type="text" placeholder="用户名/邮箱" id="account" name="account">
+                        </div>
+                        <div class="login_input">
+                            <i class="icon_login pwd"> </i>
+                            <input type="password" placeholder="密码" id="pwd" name="password">
+                        </div>
+                    </div>
+                    <div class="login_help_panel">
+                        <label class="frm_checkbox_label" for="rememberCheck">
+                            <i class="icon_checkbox"></i>
+                            <input type="checkbox" class="frm_checkbox" id="rememberCheck">
+                            <span style="font-size: 15px;">记住帐号</span>
+                        </label>
+                        <a class="login_forget_pwd" href="/acct/resetpwd?action=send_email_page">无法登录？</a>
+                    </div>
+                    <div class="login_btn_panel">
+                        <a class="btn_login" title="点击登录" href="javascript:" id="loginBt" style="text-decoration: none;">登录</a>
+                    </div>
+                </form>
+                <div class="login_btn_panel">
+                        <a class="btn_login" title="注册" href="javascript:" id="registerBt">立即注册</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="foot">
+        <div class="copyright">
+            <p>
+                <span><a href="#" target="_blank">About us</a></span>
+                <span><a href="#" target="_blank">Legal Notices</a></span>
+                <span><a href="#" target="_blank">Links</a></span>
+            </p>
+            <p>
+                <span><a href="#" target="_blank">link1</a></span>
+                <span><a href="#" target="_blank">link2</a></span>
+                <span><a href="#" target="_blank">Link3</a></span>
+                <span><a href="#" target="_blank">Link4</a></span>
+            </p>
+            <p>&copy; 2015 Copyright by xxx.com</p>
+        </div>
+    </div>
+    <script src="/static/js/jquery-2.2.3.min.js"></script>
+    <script>
+        $(function(){
+            $("#loginBt").click(function(){
+                var account=$(".login_input").find("#account").val();
+                var pwd=$(".login_input").find("#pwd").val();
+                if(account.trim()=='' || account.length==0){
+                    $(".login_err_panel").text("用户名不能为空！").css("display","block");
+                    return false;
+                }else if(pwd.trim()=='' || pwd.length==0){
+                    $(".login_err_panel").text("密码不能为空！").css("display","block");
+                    return false;
+                }else {
+                    $(".login_err_panel").css("display","none");
+                    //window.location.href="index.html";
+                    $("#loginForm").submit();
+                    return true;
+                }
+
+            });
+
+            $("#registerBt").click(function(){
+                window.location.href="register.html"
+            });
+        });
+    </script>
+</body>
+</html>

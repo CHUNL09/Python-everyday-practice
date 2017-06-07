@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<link href="css/tabmenu.css" rel="stylesheet" />
+<body>
+	<div class='container'>
+		<div class='tab-menu-box1'>
+			<div class='menu'>
+                <div id='tab-menu-title'>
+                    <span class='current' content-to='1'>Tab1</span>
+                    <span content-to='2'>Tab2</span>
+                    <span content-to='3'>Tab3</span>
+                </div>
+			</div>
+
+			<div id='tab-menu-body' class='tab-content'>
+				<div content='1'>content1</div>
+				<div content='2' class='hide'>content2</div>
+				<div content='3' class='hide'>content3</div>
+			</div>
+		</div>
+	</div>
+	<script src="jquery-2.2.3.min.js"></script>
+	<script type='text/javascript'>
+	$(function(){
+		$("#tab-menu-title").children().bind("click", function () {
+			var menu=$(this);
+			var content=$("#tab-menu-body").find('div[content="' + menu.attr("content-to") + '"]');
+			menu.addClass('current').siblings().removeClass('current');
+			content.removeClass('hide').siblings().addClass('hide');
+		})
+	})
+	</script>
+</body>
+</html>
