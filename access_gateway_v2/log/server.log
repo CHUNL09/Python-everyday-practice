@@ -1,0 +1,218 @@
+
+2016-03-19 02:11:03,696 - ops_logger - INFO - test log
+2016-03-19 02:11:03,697 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:12:12,736 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:12:22,232 - ops_logger - INFO - login module test
+2016-03-19 02:12:22,233 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:12:33,528 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:12:46,696 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:12:59,128 - ops_logger - INFO - login module test
+2016-03-19 02:12:59,129 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:25:40,757 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:25:46,165 - ops_logger - INFO - login module test
+2016-03-19 02:25:46,165 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:26:19,529 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:26:25,030 - ops_logger - INFO - login module test
+2016-03-19 02:26:25,030 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:31:07,694 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:31:13,768 - ops_logger - INFO - login module test
+2016-03-19 02:31:13,768 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:32:45,997 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:32:50,888 - ops_logger - INFO - login module test
+2016-03-19 02:32:50,888 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:36:44,770 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:36:49,582 - ops_logger - INFO - login module test
+2016-03-19 02:36:49,586 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:38:09,862 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:38:15,143 - ops_logger - INFO - login module test
+2016-03-19 02:38:15,143 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:38:53,940 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:38:58,609 - ops_logger - INFO - login module test
+2016-03-19 02:38:58,609 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:39:00,579 - ops_logger - INFO - Execute operation [['add', '-g', 'server_group1']]
+2016-03-19 02:43:34,338 - ops_logger - INFO - Initialing server config file...
+2016-03-19 02:43:38,985 - ops_logger - INFO - login module test
+2016-03-19 02:43:38,985 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:43:41,862 - ops_logger - INFO - Execute operation [['add', '-g', 'server_group1']]
+2016-03-19 02:44:07,818 - ops_logger - INFO - Execute operation [['add', '-r', 'hostname', '192.168.59.129', 'ip', '192.168.59.129', 'port', '22', 'username', 'root', 'password', 'aircool', 'group', 'server_group1']]
+2016-03-19 02:49:44,625 - ops_logger - INFO - login module test
+2016-03-19 02:49:44,626 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:50:03,419 - ops_logger - INFO - Execute operation [['add', '-r', 'hostname', '192.168.59.129', 'ip', '192.168.59.129', 'port', '22', 'username', 'root', 'password', 'aircool', 'group', 'server_group1']]
+2016-03-19 02:54:06,462 - ops_logger - INFO - login module test
+2016-03-19 02:54:06,462 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:54:19,437 - ops_logger - INFO - Execute operation [['add', '-r', 'hostname', '192.168.59.129', 'ip', '192.168.59.129', 'port', '22', 'username', 'root', 'password', 'aircool', 'group', 'server_group1']]
+2016-03-19 02:55:41,115 - ops_logger - INFO - login module test
+2016-03-19 02:55:41,116 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:56:51,062 - ops_logger - INFO - login module test
+2016-03-19 02:56:51,062 - ops_logger - INFO - [admin] login successful
+2016-03-19 02:56:56,488 - ops_logger - INFO - Execute operation [['add', '-r', 'hostname', '192.168.59.129', 'ip', '192.168.59.129', 'port', '22', 'username', 'root', 'password', 'aircool', 'group', 'server_group1']]
+2016-03-19 02:57:21,049 - ops_logger - INFO - Execute operation [['add', '-r', 'hostname', '192.168.59.129', 'ip', '192.168.59.129', 'port', '22', 'username', 'root', 'password', 'aircool', 'group', 'server_group1']]
+2016-03-19 03:00:35,393 - ops_logger - INFO - Execute operation [['add', '-r', 'hostname', '192.168.111.129', 'ip', '192.168.111.129', 'port', '22', 'username', 'root', 'password', 'aircool']]
+2016-03-19 03:05:13,392 - ops_logger - INFO - login module test
+2016-03-19 03:05:13,392 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:05:24,059 - ops_logger - INFO - Execute operation [['query', '-r', '192.168.111.129']]
+2016-03-19 03:05:53,545 - ops_logger - INFO - Execute operation [['query', '-r', '192.168.111.129', '192.168.59.129']]
+2016-03-19 03:06:58,179 - ops_logger - INFO - login module test
+2016-03-19 03:06:58,180 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:07:26,634 - ops_logger - INFO - Execute operation [['query', '-g', 'server_group1']]
+2016-03-19 03:10:47,640 - ops_logger - INFO - login module test
+2016-03-19 03:10:47,640 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:12:27,873 - ops_logger - INFO - Execute operation [['update', '-g', 'server_group1', 'server_group2']]
+2016-03-19 03:18:12,276 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:18:24,904 - ops_logger - INFO - Execute operation [['update', '-g', 'server_group1', 'server_group2']]
+2016-03-19 03:21:10,280 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:21:19,613 - ops_logger - INFO - Execute operation [['update', '-g', 'server_group1', 'server_group2']]
+2016-03-19 03:21:54,568 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:22:03,483 - ops_logger - INFO - Execute operation [['update', '-g', 'server_group1', 'server_group2']]
+2016-03-19 03:23:15,012 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:25:32,143 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:28:33,172 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:28:42,144 - ops_logger - INFO - Execute operation [['update', '-g', 'server_group1', 'server_group2']]
+2016-03-19 03:30:29,473 - ops_logger - INFO - Execute operation [['update', '-r', 'hostname', '192.168.111.129', 'group', 'server_group2']]
+2016-03-19 03:31:28,723 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:34:43,606 - ops_logger - INFO - [admin] login successful
+2016-03-19 03:34:52,950 - ops_logger - INFO - Execute operation [['update', '-r', 'hostname', '192.168.111.129', 'group', 'server_group2']]
+2016-03-19 10:06:30,003 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:06:47,882 - ops_logger - INFO - Execute operation [['delete', '-r', '192.168.111.129']]
+2016-03-19 10:12:03,312 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:14:59,285 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:15:41,127 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:17:19,498 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:17:24,465 - ops_logger - INFO - Execute operation [['delete', '-g', 'server_group2']]
+2016-03-19 10:19:50,325 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:21:36,653 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:23:17,000 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:30:27,736 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:33:15,555 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:33:28,409 - ops_logger - INFO - Execute operation [['delete', '-r', '192.168.59.129']]
+2016-03-19 10:33:59,844 - ops_logger - INFO - Execute operation [['add', '-g', 'server_group1']]
+2016-03-19 10:34:42,998 - ops_logger - INFO - Execute operation [['add', '-r', 'hostname', '192.168.59.129', 'ip', '192.168.59.129', 'port', '22', 'username', 'root', 'password', 'aircool', 'group', 'server_group1']]
+2016-03-19 10:35:14,250 - ops_logger - INFO - Execute operation [['add', '-r', 'hostname', '192.168.111.129', 'ip', '192.168.111.129', 'port', '22', 'username', 'root', 'password', 'aircool']]
+2016-03-19 10:36:26,024 - ops_logger - INFO - Execute operation [['update', '-r', 'hostname', '192.168.111.129', 'group', 'server_group1']]
+2016-03-19 10:36:55,559 - ops_logger - INFO - Execute operation [['update', '-g', 'server_group1', 'server_group2']]
+2016-03-19 10:37:33,947 - ops_logger - INFO - Execute operation [['query', '-g', 'server_group2']]
+2016-03-19 10:42:25,637 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:42:37,130 - ops_logger - INFO - Execute operation [['update', '-g', 'server_group1', 'server_group2']]
+2016-03-19 10:43:04,589 - ops_logger - INFO - Execute operation [['query', '-g', 'server_group2']]
+2016-03-19 10:44:03,928 - ops_logger - INFO - Execute operation [['delete', '-g', 'server_group2']]
+2016-03-19 10:44:52,689 - ops_logger - INFO - Execute operation [['delete', '-r', '192.168.59.129', '192.168.111.129']]
+2016-03-19 10:46:47,664 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:47:33,815 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 10:49:34,823 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:49:44,008 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 10:50:20,509 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:50:32,015 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 10:53:10,819 - ops_logger - INFO - [admin] login successful
+2016-03-19 10:54:03,344 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:09:37,178 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:10:47,158 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:13:34,072 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:13:42,870 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:14:32,231 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:17:21,206 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:18:33,170 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:18:41,644 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:20:19,419 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:20:30,886 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:21:00,155 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:21:02,629 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:23:20,112 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:23:22,497 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:26:10,473 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:26:19,467 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:28:29,365 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:28:56,704 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:28:59,402 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:31:24,193 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:31:26,966 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:38:31,261 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:40:48,043 - ops_logger - INFO - [admin] login successful
+2016-03-19 11:40:57,485 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 11:40:57,485 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:25:29,847 - ops_logger - INFO - [admin] login successful
+2016-03-19 12:25:39,775 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:28:10,175 - ops_logger - INFO - [admin] login successful
+2016-03-19 12:28:25,550 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:40:01,775 - ops_logger - INFO - [admin] login successful
+2016-03-19 12:40:19,905 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:44:12,047 - ops_logger - INFO - [admin] login successful
+2016-03-19 12:44:35,375 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:45:04,588 - ops_logger - INFO - [admin] login successful
+2016-03-19 12:45:08,151 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:50:48,315 - ops_logger - INFO - [admin] login successful
+2016-03-19 12:50:55,827 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:53:01,599 - ops_logger - INFO - [admin] login successful
+2016-03-19 12:53:09,211 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:59:11,548 - ops_logger - INFO - [admin] login successful
+2016-03-19 12:59:13,665 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 12:59:31,684 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:06:50,176 - ops_logger - INFO - login failed
+2016-03-19 13:06:56,239 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:07:24,723 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:07:26,727 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 13:08:08,683 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:08:17,834 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 13:08:44,895 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:09:14,854 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:09:22,271 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 13:16:16,265 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:16:45,652 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:16:53,924 - ops_logger - INFO - Execute batch command [['test', '-r', '192.168']]
+2016-03-19 13:17:45,666 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:17:53,593 - ops_logger - INFO - Execute batch command [['test', '-r', '192.168.0.0']]
+2016-03-19 13:22:11,311 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:22:20,058 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 13:23:28,653 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:23:31,290 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 13:46:34,364 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:46:46,541 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 13:48:42,935 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:48:55,214 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 13:51:07,837 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:51:29,982 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.59.129']]
+2016-03-19 13:52:34,189 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-g', 'server_group2']]
+2016-03-19 13:53:48,084 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:53:53,676 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-g', 'server_group2']]
+2016-03-19 13:54:10,673 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:54:33,581 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-g', 'server_group2']]
+2016-03-19 13:55:41,390 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:56:04,604 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-g', 'server_group2']]
+2016-03-19 13:56:55,026 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-r', '192.168.111.129']]
+2016-03-19 13:57:41,514 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-g', 'server_group2']]
+2016-03-19 13:58:49,201 - ops_logger - INFO - [admin] login successful
+2016-03-19 13:59:17,506 - ops_logger - INFO - Execute batch command [['exec_shell', 'll', '-g', 'server_group2']]
+2016-03-19 14:00:43,628 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:01:05,997 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-g', 'server_group2']]
+2016-03-19 14:03:20,137 - ops_logger - INFO - Execute batch command [['exec_shell', 'pwd', '-g', 'server_group2']]
+2016-03-19 14:04:57,984 - ops_logger - INFO - download file install.log.192.168.59.129 successfully
+2016-03-19 14:12:46,015 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:13:07,892 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway/download/install.log.192.168.59.129 successfully
+2016-03-19 14:17:48,113 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:18:00,037 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway/download\install.log.192.168.59.129 successfully
+2016-03-19 14:19:36,637 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:19:56,836 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway/download\install.log.192.168.59.129 successfully
+2016-03-19 14:24:14,021 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:24:44,241 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway/download\install.log successfully
+2016-03-19 14:27:21,717 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:27:52,842 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway/download\install.log successfully
+2016-03-19 14:27:52,906 - ops_logger - INFO - Execute batch command [['download', '/root/install.log', 'install.log', '-r', '192.168.111.129']]
+2016-03-19 14:29:03,806 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:29:06,455 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway\download\install.log successfully
+2016-03-19 14:29:06,725 - ops_logger - INFO - Execute batch command [['download', '/root/install.log', 'install.log', '-r', '192.168.111.129']]
+2016-03-19 14:34:13,823 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:35:55,981 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:36:18,275 - ops_logger - INFO - Execute batch command [['exec_shell', 'ls', '-g', 'server_group2']]
+2016-03-19 14:40:17,253 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:40:34,058 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway\download\install.log successfully
+2016-03-19 14:40:34,124 - ops_logger - INFO - Execute batch command [['download', '/root/install.log', 'install.log', '-r', '192.168.111.129']]
+2016-03-19 14:42:17,487 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:42:37,667 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway\download\install.log successfully
+2016-03-19 14:42:37,827 - ops_logger - INFO - Execute batch command [['download', '/root/install.log', 'install.log', '-r', '192.168.111.129']]
+2016-03-19 14:44:38,143 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:45:08,937 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway\download\install.log.192.168.59.129 successfully
+2016-03-19 14:45:58,752 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:46:19,597 - ops_logger - INFO - download file D:\专业技能\Python\Project\S12\Day8\homework-2\access_gateway\download\install.log.192.168.111.129 successfully
+2016-03-19 14:46:19,800 - ops_logger - INFO - Execute batch command [['download', '/root/install.log', 'install.log', '-r', '192.168.111.129']]
+2016-03-19 14:48:37,275 - ops_logger - INFO - [admin] login successful
+2016-03-19 14:49:12,052 - ops_logger - INFO - upload file F:\\IMG_1714.MOV successfully
+2016-04-02 14:37:54,071 - ops_logger - INFO - [admin] login successful

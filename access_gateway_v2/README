@@ -1,0 +1,30 @@
+Python package "access_gateway"
+
+Purpose: 实现一个简单批量主机管理工具
+
+Author: Chun Liu (cedrela_liu@163.com)
+
+Blog: http://www.cnblogs.com/cedrelaliu/
+
+Licence: no
+
+Version: 1.0 -- 2016-03-19
+
+Versions of Python supported: 3.x
+
+程序说明：
+conf目录下group_config.py用来放置组信息
+          server_config.py用来放置server信息
+主要是针对第8天作业进行修改（类似于saltstack架构）
+想法是把单独的module放在module目录下，在主程序中直接使用module.function形式来调用（--这部分已经完成）
+由于时间原因，只成功调试修改出了group操作，如下：
+    gate 'group3' group.query
+    gate 'group1,group2' group.addgroup
+    gate 'group1,group2,group3' group.query
+    gate 'group1' group.addserver 'server1,server2'
+    gate 'group3' group.addserver 'server1'
+    gate 'group1' group.delserver 'server1'
+    gate 'group3' group.delgroup
+另外在main.py中修改了原来的进程池，改为了使用gevent模块的单线程异步操作。
+后续的想法是可以在module中继续扩展其他函数模块，在main中执行的时候因为会给所有执行的函数传入必要的参数，
+只需要在扩展module这种使用参数即可。
