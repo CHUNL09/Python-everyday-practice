@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>admin portal</title>
+    <link rel="stylesheet" href="css/layout1.css">
+    <link rel="stylesheet" href="css/tabmenu.css">
+    <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+    <div class="navbar navbar-default">
+        <div style="float: left;line-height: 40px;">
+            <h2 style="color: white;">admin portal</h2>
+        </div>
+        <div class="nav-right" style="float: right">
+            <ul class="menu">
+                <li><a href="#" style="color: white;">Home</a></li>
+                <li><a href="#" style="color: white;">About</a>
+                    <ul class="down-list">
+                        <li><a href="#">Company History</a></li>
+                        <li><a href="#">Meet the team</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" style="color: white;">Services</a>
+                    <ul class="down-list">
+                        <li><a href="#">Web Design</a></li>
+                        <li><a href="#">App Development</a></li>
+                        <li><a href="#">Email Campaigns</a></li>
+                        <li><a href="#">Copyrighting</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" style="color: white;">Contact</a>
+                    <ul class="down-list">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Directions</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" style="color: white;">Admin</a>
+                    <ul class="down-list">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+		    </ul>
+		<div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="sidebar-nav">
+         <ul id="accordion" class="accordion">
+	        <li>
+		        <div class="link">作业</div>
+		        <ul class="submenu hide">
+			        <li><a id="ajax" href="#">Ajax跨域</a></li>
+			        <li><a id="tabmenu" href="#">Tab菜单</a></li>
+                    <li><a id="toTop" href="#">返回顶部</a></li>
+		        </ul>
+	        </li>
+	        <li>
+		        <div class="link">资源管理</div>
+		        <ul class="submenu hide">
+			        <li><a href="#">主机</a></li>
+			        <li><a href="#">集群</a></li>
+			        <li><a href="#">网络</a></li>
+		        </ul>
+	        </li>
+	        <li>
+		        <div class="link">组织管理</div>
+		        <ul class="submenu hide">
+			        <li><a href="#">用户管理</a></li>
+			        <li><a href="#">部门管理</a></li>
+			        <li><a href="#">职位管理</a></li>
+			        <li><a href="#">项目管理</a></li>
+		        </ul>
+	        </li>
+	        <li><div class="link">监控管理</div>
+		        <ul class="submenu hide">
+			        <li><a href="#">实时监控</a></li>
+			        <li><a href="#">历史监控</a></li>
+			        <li><a href="#">业务分析</a></li>
+		        </ul>
+	        </li>
+             <li><div class="link">其他</div>
+		        <ul class="submenu hide">
+			        <li><a href="#">link1</a></li>
+			        <li><a href="#">link2</a></li>
+			        <li><a href="#">link3</a></a></li>
+		        </ul>
+	        </li>
+        </ul>
+    </div>
+    <div class="content">
+        <h3>1 需要在firefox中运行,chrome会出跨域的问题</h3>
+        <h3>2 点击左侧 作业，下拉菜单中...</h3>
+        <div class="content-box"></div>
+    </div>
+    <div class="clearfix"></div>
+    <script src="jquery-2.2.3.min.js"></script>
+    <script>
+        $(function () {
+            $(".link").click(function () {
+                $(this).next().toggleClass("hide");
+                $(this).parent().siblings().each(function () {
+                    if ($(this).children("ul").hasClass("hide")) { }
+                    else {
+                        $(this).children("ul").addClass("hide");
+                    }
+                });
+            });
+            $("#ajax").click(function () {
+                $(".content").load('ajax.html');
+            });
+            $("#tabmenu").click(function () {
+                $(".content").load('tabmenu.html');
+            });
+            $("#toTop").click(function () {
+                $(".content").load('toTop.html');
+            });
+		})
+    </script>
+</body>
+</html>

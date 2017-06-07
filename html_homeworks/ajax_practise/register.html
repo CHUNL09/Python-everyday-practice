@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register page</title>
+    <link href="css/common.css" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <div class="header-layout">
+            <h1 class="logo">
+                <a href="#" style="visibility: hidden">
+                    company logo
+                </a>
+            </h1>
+            <h2 class="logo-title">账号注册</h2>
+            <ul class="header-nav">
+                <li>
+                    <a href="#" target="_blank">首页</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">帮助</a>
+                </li>
+                <li>
+                    <a href="#" target="_blank">论坛</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="body">
+        <div class='account-container'>
+	        <div class='body clearfix'>
+	            <div class='register'>
+	                <div>
+	                    <h2>注册新用户</h2>
+	                    <form id='Form' method='POST' action="login.html">
+	                        <div class='group'>
+	                        	<label class='tip'>用户名</label>
+	                        	<input type='text' id="username" name='username' />
+	                        	<i id="i-username" class='login_err_panel' style="display: none">用户名不能为空！</i>
+	                        </div>
+	                        <div class='group'>
+	                        	<label class='tip'>手机号</label>
+	                        	<input  type='text' id="cellphone" />
+	                        	<i id='i-phone' class='login_err_panel' style="display: none"></i>
+	                        </div>
+	                        <div class='group'>
+	                        	<label class='tip'>登录密码</label>
+	                        	<input  type='password' id="pwd" min-len='6' name='pwd' />
+	                        	<i id='i-pwd' class='login_err_panel' style="display: none"></i>
+	                        </div>
+	                        <div class='group'>
+	                        	<label class='tip'>确认密码</label>
+	                        	<input  type='password' id="pwdc" />
+	                        	<i id='i-pwdc' class='login_err_panel' style="display: none"></i>
+	                        </div>
+	                        <div class='group font12'>
+	                        	<label class='tip'></label>
+	                        	<label style='width:246px;display: inline-block;'>
+                                    <input id='protocol' name='protocol' type='checkbox' checked='checked' /><span>我已阅读并同意<a href='#'>《用户注册协议》</a></span>
+                                </label>
+                                <i id='i-protocol' class='login_err_panel' style="display: none"></i>
+	                        </div>
+
+	                        <div class='group'>
+	                        	<label class='tip'></label>
+	                        	<input type='submit' id="btn_agree" class='btn_login' value='同意以上协议并注册' />
+	                        </div>
+	                    </form>
+	                </div>
+	            </div>
+	            <div class='more'>
+	            	<div>我已经注册，现在就<a href='login.html'>登录</a></div>
+	            </div>
+	        </div>
+
+		</div>
+    </div>
+
+    <div class="foot">
+        <div class="copyright">
+            <p>
+                <span><a href="#" target="_blank">About us</a></span>
+                <span><a href="#" target="_blank">Legal Notices</a></span>
+                <span><a href="#" target="_blank">Links</a></span>
+            </p>
+            <p>
+                <span><a href="#" target="_blank">link1</a></span>
+                <span><a href="#" target="_blank">link2</a></span>
+                <span><a href="#" target="_blank">Link3</a></span>
+                <span><a href="#" target="_blank">Link4</a></span>
+            </p>
+            <p>&copy; 2015 Copyright by xxx.com</p>
+        </div>
+    </div>
+    <script src="jquery-2.2.3.min.js"></script>
+    <script>
+        $(function(){
+            $("#btn_agree").click(function(){
+                var account=$("#username").val();
+                var cell=$("#cellphone").val();
+                var pwd=$("#pwd").val();
+                var pwd_confirm=$("#pwdc").val();
+                if(account.trim()=='' || account.length==0){
+                    $("#i-username").text("用户名不能为空！").css("display","inline")
+                    return false;
+                }else if(cell.trim()=='' || cell.length==0){
+                    $("#i-phone").text("手机号不能为空！").css("display","inline")
+                    return false;
+                }else if(pwd.trim()=='' || pwd.length==0){
+                    $("#i-pwd").text("密码不能为空！").css("display","inline")
+                    return false;
+                }
+                else if(pwd_confirm.trim()=='' || pwd_confirm.length==0){
+                    $("#i-pwdc").text("确认密码不能为空！").css("display","inline")
+                    return false;
+                }
+                else if(pwd_confirm!=pwd){
+                    $("#i-pwdc").text("确认密码输入有误！").css("display","inline")
+                    return false;
+                }
+                else if(!$("#protocol").prop("checked")){
+                    $("#i-protocol").text("请同意协议！").css("display","inline")
+                    return false;
+                }
+                else {
+                    $(".login_err_panel").css("display","none");
+                    window.location.href="login.html";
+                    return false;
+                }
+            })
+        });
+    </script>
+</body>
+</html>

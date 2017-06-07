@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link rel="stylesheet" href="css/common.css">
+    </head>
+    <body>
+        <div>
+           <div style="float: left;">
+            <h2>This is ajax page!</h2>
+            <div>
+                <div class="login_btn_panel">
+                        <a class="btn_login" href="javascript:" id="registerBt" onclick="GetValue();">获取数据</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tvmenu" style="clear: left;">
+        </div>
+        </div>
+
+    </body>
+    <script src="jquery-2.2.3.min.js"></script>
+    <script>
+        function GetValue(){
+            $(".tvmenu").empty();
+            $.ajax({
+                url:"http://www.jxntv.cn/data/jmd-jxtv2.html",
+                data:{},
+                type:'GET',
+                dataType:'jsonp',
+                jsonp:'callback',
+                jsonpCallback:'list',
+                success:function(arg){
+                    console.log(arg);
+                    var array=arg.data;
+                    $.each(array,function(k,v){
+                        var week= v.week;
+                        var tvlist= v.list;
+                        var week_line="<h2>" + week +"</h2>";
+                        $(".tvmenu").append(week_line);
+                        $(".tvmenu").append("<hr>");
+
+                        $.each(tvlist,function(k2,v2){
+                            var time=v2.time;
+                            var name=v2.name;
+                            var link=v2.link;
+                            var tv_line="<p>"+time+" <a href='link'>"+name+"</a></p>";
+                            $(".tvmenu").append(tv_line);
+
+                        })
+                    })
+                }
+            })
+        }
+    </script>
+</html>
