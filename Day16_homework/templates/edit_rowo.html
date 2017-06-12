@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/edit_row.css" type="text/css">
+    <style>
+        table td{
+            border: 2px solid #47687a;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container_editr" style="width: 800px;margin: 10px;padding: 15px;">
+        <div style="height: 60px;">
+            <div style="border: 1px solid red;padding: 3px;">
+                <h5>1 点击Add，在输入框中输入记录，点击Save提交</h5>
+                <h5>2 选中记录后，点击Edit Mode修改记录，点击Save提交</h5>
+                <h5>3 选中记录后，点击Delete可以直接删除记录</h5>
+                <h5>4 status数据长度较短，修改时不要超过长度</h5>
+                <h5>5 在Add或者Edit Mode时，点击Cancel取消</h5>
+                <p>hello</p>
+            </div>
+            <div>
+                <a id="select" class="buttons">Select All</a>
+            </div>
+            <div>
+                <a id="inverse" class="buttons">Inverse</a>
+            </div>
+            <div>
+                <a id="cancel" class="buttons">Cancel</a>
+            </div>
+            <div>
+                <a id="edit" class="buttons" style="background-color: #8b3a30">Edit Mode</a>
+            </div>
+            <div>
+                <a id="add" class="buttons" style="background-color: #8b3a30">Add</a>
+            </div>
+            <div>
+                <a id="save" class="buttons" style="background-color: #8b3a30">Save</a>
+            </div>
+            <div>
+                <a id="delete" class="buttons" style="background-color: #8b3a30">Delete</a>
+            </div>
+        </div>
+        <div id="table_area" style="margin-top: 100px;">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Option</td>
+                        <td>Hostname</td>
+                        <td>IP</td>
+                        <td>Port</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for host_item in hosts %}
+                    <tr row_id="{{ host_item.id }}">
+                        <td>
+                            <input type="checkbox"/>
+                        </td>
+                        <td>{{ host_item.hostname }}</td>
+                        <td>{{ host_item.ip }}</td>
+                        <td>{{ host_item.port }}</td>
+                        <td>{{ host_item.status }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr id="add_input" class="hide">
+                        <td>
+                            <input type="checkbox"/>
+                        </td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                        <td><input type="text"/></td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    </div>
+
+    <script src="/static/js/jquery-2.2.3.min.js"></script>
+    <script>
+        $(function(){
+            $("#add").click(function(){
+                $("table #add_input").removeClass('hide');
+                var action_type='add';
+                //parent.location.reload();
+            });
+            $("#select").click(function(){
+                $("table input:checkbox").prop('checked',true);
+            });
+            $("#cancel").click(function(){
+
+                $("table input:checkbox").prop('checked',false);
+                //window.location.reload();
+                //$.load('/app01/edit_row/');
+                if (!$("#add_input").hasClass('hide')){
+                    $("#add_input").addClass('hide');
+                }
+                var action_type='cancel';
+                //parent.location.reload();
+                $.ajax({
+                    url:'/app01/table_area/',
+                    type:'GET',
+                    data:{'action_type':action_type},
+                    success:function(arg){
+                        var data=JSON.parse(arg);
+                        //console.log(data);
+                        $("#table_area tbody").empty();
+                        $.each(data,function(k,v){
+                            var row_id=v['id'];
+                            var hostname=v['hostname'];
+                            var ip=v['ip'];
+                            var port=v['port'];
+                            var status=v['status'];
+                            var new_row="<tr row_id="+row_id+"><td><input type='checkbox'/></td><td>"+hostname+"</td><td>"
+                                    +ip+"</td><td>"+port+"</td><td>"+status+"</td></tr>";
+                            $("#table_area tbody").append(new_row);
+                        });
+                        var input_row="<tr id='add_input' class='hide'><td><input type='checkbox'/></td>" +
+                                "<td><input type='text'/></td><td><input type='text'/></td><td><input type='text'/>" +
+                                "</td><td><input type='text'/></td></tr>"
+                        $("#table_area tbody").append(input_row);
+                    }
+                });
+            });
+            $("#inverse").click(function(){
+                $("table input:checkbox").each(function(){
+                    $(this).prop('checked',!$(this).prop('checked'))
+                })
+            });
+
+            $("#edit").click(function(){
+                $("table input:checkbox").each(function(){
+                    if($(this).prop('checked')){
+                        var o_hostname=$(this).parent().next();
+                        var o_ip_addr=$(o_hostname).next();
+                        var o_port=$(o_ip_addr).next();
+                        var o_status=$(o_port).next();
+                        var host_value=$(o_hostname).text();
+                        var ip_value=$(o_ip_addr).text();
+                        var port_value=$(o_port).text();
+                        var status_value=$(o_status).text();
+                        $(this).attr('edit_row','true');
+                        o_hostname.html(function(){
+                            return '<input value='+host_value+' />'
+                        });
+                        o_ip_addr.html(function(){
+                            return '<input value='+ip_value+' />'
+                        });
+                        o_port.html(function(){
+                            return '<input value='+port_value+' />'
+                        });
+                        o_status.html(function(){
+                            return '<input value='+status_value+' />'
+                        });
+
+                    }
+                })
+            });
+
+            $("#delete").click(function(){
+                var data_list=Array();
+                $("table input:checkbox").each(function(){
+                    if($(this).prop('checked')){
+                        var row_id=$(this).parent().parent().attr('row_id');
+                        data_list.push(row_id);
+                    }
+                });
+
+                $.ajax({
+                        url:'/app01/table_area/',
+                        type:'POST',
+                        traditional:true,
+                        data:{'action_type':'delete','data_list':JSON.stringify(data_list)},
+                        success:function(arg){
+                            var data=JSON.parse(arg);
+                            //console.log(data);
+                            $("#table_area tbody").empty();
+                            $.each(data,function(k,v){
+                                var row_id=v['id'];
+                                var hostname=v['hostname'];
+                                var ip=v['ip'];
+                                var port=v['port'];
+                                var status=v['status'];
+                                var new_row="<tr row_id="+row_id+"><td><input type='checkbox'/></td><td>"+hostname+"</td><td>"
+                                        +ip+"</td><td>"+port+"</td><td>"+status+"</td></tr>";
+                                $("#table_area tbody").append(new_row);
+                            });
+                            var input_row="<tr id='add_input' class='hide'><td><input type='checkbox'/></td>" +
+                                    "<td><input type='text'/></td><td><input type='text'/></td><td><input type='text'/>" +
+                                    "</td><td><input type='text'/></td></tr>";
+                            $("#table_area tbody").append(input_row);
+                        }
+                    });
+
+            });
+
+
+            $("#save").click(function(){
+                if(!$("table #add_input").hasClass('hide')){
+                   $("table #add_input").addClass('hide');
+                //.find("input").val()
+                    var $hostname=$("table #add_input").find("input[type=checkbox]").parent().next();
+                    var $ip=$hostname.next();
+                    var $port=$ip.next();
+                    var $status=$port.next();
+
+                    $.ajax({
+                        url:'/app01/table_area/',
+                        type:'POST',
+                        data:{'action_type':'add','hostname':$hostname.find("input").val(),
+                        'ip':$ip.find("input").val(),
+                        'port':$port.find("input").val(),
+                        'status':$status.find("input").val()},
+                        success:function(arg){
+                            var data=JSON.parse(arg);
+                            //console.log(data);
+                            $("#table_area tbody").empty();
+                            $.each(data,function(k,v){
+                                var row_id=v['id'];
+                                var hostname=v['hostname'];
+                                var ip=v['ip'];
+                                var port=v['port'];
+                                var status=v['status'];
+                                var new_row="<tr row_id="+row_id+"><td><input type='checkbox'/></td><td>"+hostname+"</td><td>"
+                                        +ip+"</td><td>"+port+"</td><td>"+status+"</td></tr>";
+                                $("#table_area tbody").append(new_row);
+                            });
+                            var input_row="<tr id='add_input' class='hide'><td><input type='checkbox'/></td>" +
+                                    "<td><input type='text'/></td><td><input type='text'/></td><td><input type='text'/>" +
+                                    "</td><td><input type='text'/></td></tr>";
+                            $("#table_area tbody").append(input_row);
+                        }
+                    });
+                }else{
+                    var hosts=Array();
+                    $("table input:checkbox").each(function(){
+                        if($(this).attr('edit_row')=='true'){
+                            var row_id=$(this).parent().parent().attr('row_id');
+                            var o_hostname=$(this).parent().next();
+                            var o_ip_addr=$(o_hostname).next();
+                            var o_port=$(o_ip_addr).next();
+                            var o_status=$(o_port).next();
+                            var host_value=$(o_hostname).find('input').val();
+                            var ip_value=$(o_ip_addr).find('input').val();
+                            var port_value=$(o_port).find('input').val();
+                            var status_value=$(o_status).find('input').val();
+                            var host_item={'row_id':row_id,'hostname':host_value,
+                            'ip':ip_value,'port':port_value,'status':status_value};
+                            hosts.push(host_item);
+                        }
+                    });
+                    //data_list=JSON.stringify(hosts);
+                    $.ajax({
+                            url:'/app01/table_area/',
+                            type:'POST',
+                            traditional:true,
+                            data:{'action_type':'batch_save','data_list':JSON.stringify(hosts)},
+                            success:function(arg){
+                                var data=JSON.parse(arg);
+                                //console.log(data);
+                                $("#table_area tbody").empty();
+                                $.each(data,function(k,v){
+                                    var row_id=v['id'];
+                                    var hostname=v['hostname'];
+                                    var ip=v['ip'];
+                                    var port=v['port'];
+                                    var status=v['status'];
+                                    var new_row="<tr row_id="+row_id+"><td><input type='checkbox'/></td><td>"+hostname+"</td><td>"
+                                            +ip+"</td><td>"+port+"</td><td>"+status+"</td></tr>";
+                                    $("#table_area tbody").append(new_row);
+                                });
+                                var input_row="<tr id='add_input' class='hide'><td><input type='checkbox'/></td>" +
+                                        "<td><input type='text'/></td><td><input type='text'/></td><td><input type='text'/>" +
+                                        "</td><td><input type='text'/></td></tr>";
+                                $("#table_area tbody").append(input_row);
+                            }
+                    });
+                }
+
+            });
+        });
+
+    </script>
+</body>
+</html>

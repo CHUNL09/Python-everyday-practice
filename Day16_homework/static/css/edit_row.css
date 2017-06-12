@@ -1,0 +1,23 @@
+.m_name{
+    font-size: 20px;
+    font-weight: bold;
+    //border: 1px solid #4cae4c;
+    color: white;
+}
+
+.buttons {
+    display: inline;
+    float: left;
+    margin: 6px 6px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #eee;
+    cursor: pointer;
+    padding: 6px 12px;
+    color: #fff;
+    background-color: #b8c1c1;
+    border-radius: 5px;
+}
+.hide{
+    display: none;
+}

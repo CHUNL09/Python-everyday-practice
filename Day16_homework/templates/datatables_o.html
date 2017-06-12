@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>datatable</title>
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="col-md-6">
+				<div class="panel panel-success">
+					<div class="panel-heading">table
+						<button type="button" class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#myModal">
+							<span class="glyphicon glyphicon-plus">Add</span>
+						</button>
+					</div>
+					<div class="panel-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Email</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Alex</td>
+									<td>Li</td>
+									<td>alex@gmail.com</td>
+									<td>
+										<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+											<span class="glyphicon glyphicon-edit"></span>
+										</button>
+										<button type="button" class="btn btn-info btn-xs">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>		
+			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		
+		
+		<script src="/static/js/jquery-2.2.3.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script></script>
+	</body>
+</html>

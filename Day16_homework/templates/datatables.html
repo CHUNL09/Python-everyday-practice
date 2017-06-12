@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>datatable</title>
+		<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css">
+	</head>
+	<body>
+		<div class="container">
+			<div class="col-md-6">
+				<div class="panel panel-success">
+					<div class="panel-heading">Author
+						<button type="button" class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#myModal" data-action="add" data-title="author">
+							<span class="glyphicon glyphicon-plus">Add</span>
+						</button>
+					</div>
+					<div class="panel-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Email</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+                                    {% for author in authors %}
+								<tr row_id={{ author.id }}>
+
+									<td>{{ author.first_name }}</td>
+									<td>{{ author.last_name }}</td>
+									<td>{{ author.email }}</td>
+									<td>
+										<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal" data-action="edit" data-title="author">
+											<span class="glyphicon glyphicon-edit"></span>
+										</button>
+										<button id="delete_bt" type="button" class="btn btn-info btn-xs del_bt" data-title="author">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button>
+									</td>
+
+								</tr>
+                                    {% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>		
+			</div>
+            <div class="col-md-12"></div>
+            <div class="col-md-8">
+				<div class="panel panel-success">
+					<div class="panel-heading">Publisher
+						<button type="button" class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#myModal" data-action="add" data-title="publisher">
+							<span class="glyphicon glyphicon-plus">Add</span>
+						</button>
+					</div>
+					<div class="panel-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Address</th>
+									<th>City</th>
+                                    <th>State_province</th>
+                                    <th>Country</th>
+                                    <th>Website</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+                                {% for publisher in publishers %}
+								<tr row_id={{ publisher.id }}>
+									<td>{{ publisher.name }}</td>
+									<td>{{ publisher.address }}</td>
+									<td>{{ publisher.city }}</td>
+                                    <td>{{ publisher.state_province }}</td>
+                                    <td>{{ publisher.country }}</td>
+                                    <td>{{ publisher.website }}</td>
+									<td>
+										<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal" data-action="edit" data-title="publisher">
+											<span class="glyphicon glyphicon-edit"></span>
+										</button>
+										<button id="delete_bt" type="button" class="btn btn-info btn-xs del_bt" data-title="publisher">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button>
+									</td>
+
+								</tr>
+                                {% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel"></h4>
+			      </div>
+			      <div class="modal-body" id="myModalbody">
+                      <div class="col-sm-10" style="float: none">
+
+                      </div>
+
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button type="button" class="btn btn-primary" role="button" id="save_data">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+		
+		
+		<script src="/static/js/jquery-2.2.3.min.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script>
+            $(function(){
+                var row_id=0;
+                var current_role='';
+                $("#myModal").on('show.bs.modal',function(event){
+                var button=$(event.relatedTarget);
+                var action_type=button.data('action');
+                var table_name=button.data('title');
+                if (action_type=='add'){
+                    $(this).find('#myModalLabel').text('Add a new record');
+                    if (table_name=='author'){
+                        current_role='author';
+                        var add_content="<div class='col-sm-10' style='float: none'>"+
+                          "<form class='form-horizontal'>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>First Name</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='first_name'>"+
+                                "</div>"+
+                              "</div>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Last Name</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='last_name'>"+
+                                "</div>"+
+                              "</div>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Email</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='email' class='form-control' id='email'></div></div></form></div>";
+                        $(this).find('#myModalbody').html(add_content);
+                    }else if(table_name=='publisher'){
+                        current_role='publisher';
+                        var add_content="<div class='col-sm-10' style='float: none'>"+
+                          "<form class='form-horizontal'>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Name</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_name'>"+
+                                "</div>"+
+                              "</div>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Address</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_addr'>"+
+                                "</div>"+
+                              "</div>"+
+                                "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>City</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_city'>"+
+                                "</div>"+
+                              "</div>"+
+                                "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>State_province</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_state'>"+
+                                "</div>"+
+                              "</div>"+
+                                "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Country</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_country'>"+
+                                "</div>"+
+                              "</div>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Website</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='email' class='form-control' id='p_web'></div></div></form></div>";
+                        $(this).find('#myModalbody').html(add_content);
+                    }
+                }else if(action_type=='edit') {
+                    $(this).find('#myModalLabel').text('Edit a new record');
+                    row_id=button.parent().parent().attr('row_id');
+{#                    console.log("hello here");#}
+                    if(table_name=='author'){
+                        current_role='author';
+                        var _firstname = button.parent().prev().prev().prev().text();
+                        var _lastname = button.parent().prev().prev().text();
+                        var _email = button.parent().prev().text();
+                        var edit_content = "<div class='col-sm-10' style='float: none'>" +
+                                "<form class='form-horizontal'>" +
+                                "<div class='form-group'>" +
+                                "<label class='col-sm-4 control-label'>First Name</label>" +
+                                "<div class='col-sm-6'>" +
+                                "<input type='text' class='form-control' id='first_name' placeholder='" + _firstname + "'>" +
+                                "</div>" +
+                                "</div>" +
+                                "<div class='form-group'>" +
+                                "<label class='col-sm-4 control-label'>Last Name</label>" +
+                                "<div class='col-sm-6'>" +
+                                "<input type='text' class='form-control' id='last_name' placeholder='" + _lastname + "'>" +
+                                "</div>" +
+                                "</div>" +
+                                "<div class='form-group'>" +
+                                "<label class='col-sm-4 control-label'>Email</label>" +
+                                "<div class='col-sm-6'>" +
+                                "<input type='email' class='form-control' id='email' placeholder='" + _email + "'></div></div></form></div>";
+                        $(this).find('#myModalbody').empty();
+                        $(this).find('#myModalbody').html(edit_content);
+                    }else if(table_name=='publisher'){
+                        current_role='publisher';
+                        var _name = button.parent().prev().prev().prev().prev().prev().prev().text();
+
+                        var _addr = button.parent().prev().prev().prev().prev().prev().text();
+                        var _city = button.parent().prev().prev().prev().prev().text();
+                        var _state = button.parent().prev().prev().prev().text();
+                        var _country =button.parent().prev().prev().text();
+                        var _web = button.parent().prev().text();
+                        var edit_content="<div class='col-sm-10' style='float: none'>"+
+                          "<form class='form-horizontal'>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Name</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_name' placeholder='" + _name + "'>"+
+                                "</div>"+
+                              "</div>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Address</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_addr' placeholder='" + _addr + "'>"+
+                                "</div>"+
+                              "</div>"+
+                                "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>City</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_city' placeholder='" + _city + "'>"+
+                                "</div>"+
+                              "</div>"+
+                                "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>State_province</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_state' placeholder='" + _state + "'>"+
+                                "</div>"+
+                              "</div>"+
+                                "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Country</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='text' class='form-control' id='p_country' placeholder='" + _country + "'>"+
+                                "</div>"+
+                              "</div>"+
+                              "<div class='form-group'>"+
+                                "<label class='col-sm-4 control-label'>Website</label>"+
+                                "<div class='col-sm-6'>"+
+                                  "<input type='email' class='form-control' id='p_web' placeholder='" + _web + "'></div></div></form></div>";
+                        $(this).find('#myModalbody').empty();
+                        $(this).find('#myModalbody').html(edit_content);
+                    }
+
+
+
+                }
+            });
+                $("#save_data").click(function(){
+                    var save_mode=$("#myModal").find('#myModalLabel').text();
+                    if (save_mode=='Add a new record'){
+                        if (current_role=='author'){
+                            $.ajax({
+                        url:'/app01/datatables/',
+                        type:'POST',
+                        data:{'action_type':'add','current_role':current_role,
+                            'first':$('#myModal').find('#first_name').val(),
+                            'last':$('#myModal').find('#last_name').val(),
+                            'email':$('#myModal').find('#email').val()}
+                        });
+                        }else if(current_role=='publisher'){
+                            $.ajax({
+                        url:'/app01/datatables/',
+                        type:'POST',
+                        data:{'action_type':'add','current_role':current_role,
+                            'name':$('#myModal').find('#p_name').val(),
+                            'addr':$('#myModal').find('#p_addr').val(),
+                            'city':$('#myModal').find('#p_city').val(),
+                            'state':$('#myModal').find('#p_state').val(),
+                            'country':$('#myModal').find('#p_country').val(),
+                            'web':$('#myModal').find('#p_web').val()
+                        }
+                        });
+                        }
+
+                        $('#myModal').modal('hide');
+                        window.location.reload(true);
+                    }else {
+                        if(current_role=='author'){
+                            var first_value=$('#myModal').find('#first_name').val();
+                            var last_value=$('#myModal').find('#last_name').val();
+                            var email_value=$('#myModal').find('#email').val();
+                            console.log(first_value);
+                            if (first_value.length==0){
+                                console.log('hello');
+                                first_value=$('#myModal').find('#first_name').attr('placeholder')
+                            }
+                            if (last_value.length==0){
+                                last_value=$('#myModal').find('#last_name').attr('placeholder')
+                            }
+                            if (email_value.length==0){
+                                email_value=$('#myModal').find('#email').attr('placeholder')
+                            }
+                            $.ajax({
+                            url:'/app01/datatables/',
+                            type:'POST',
+                            data:{'action_type':'edit','current_role':current_role,
+                                'id':row_id,
+                                'first':first_value,
+                                'last':last_value,
+                                'email':email_value}
+                            });
+                        }else if(current_role=='publisher'){
+                            var name_value=$('#myModal').find('#p_name').val();
+                            var addr_value=$('#myModal').find('#p_addr').val();
+                            var city_value=$('#myModal').find('#p_city').val();
+                            var state_value=$('#myModal').find('#p_state').val();
+                            var country_value=$('#myModal').find('#p_country').val();
+                            var website_value=$('#myModal').find('#p_web').val();
+                            if (name_value.length==0){
+                                name_value=$('#myModal').find('#p_name').attr('placeholder')
+                            }
+                            if (addr_value.length==0){
+                                addr_value=$('#myModal').find('#p_addr').attr('placeholder')
+                            }
+                            if (city_value.length==0){
+                                city_value=$('#myModal').find('#p_city').attr('placeholder')
+                            }
+                            if (state_value.length==0){
+                                state_value=$('#myModal').find('#p_state').attr('placeholder')
+                            }
+                            if (country_value.length==0){
+                                country_value=$('#myModal').find('#p_country').attr('placeholder')
+                            }
+                            if (city_value.length==0){
+                                website_value=$('#myModal').find('#p_web').attr('placeholder')
+                            }
+                            $.ajax({
+                            url:'/app01/datatables/',
+                            type:'POST',
+                            data:{'action_type':'edit','current_role':current_role,
+                                'id':row_id,
+                                'name':name_value,
+                                'addr':addr_value,
+                                'city':city_value,
+                                'state':state_value,
+                                'country':country_value,
+                                'web':website_value}
+                            });
+                        }
+
+                        $('#myModal').modal('hide');
+                        window.location.reload(true);
+                    }
+
+                });
+
+                $(".del_bt").click(function () {
+                    current_role=$(this).attr('data-title');
+                    var del_id=$(this).parent().parent().attr('row_id');
+                    $.ajax({
+                        url:'/app01/datatables/',
+                        type:'POST',
+                        data:{'action_type':'del','current_role':current_role,
+                            'id':del_id}
+                    });
+                    window.location.reload(true);
+                });
+
+            });
+
+        </script>
+	</body>
+</html>
